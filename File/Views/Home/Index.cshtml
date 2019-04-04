@@ -1,0 +1,30 @@
+﻿@model ParentViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form class="form-action" id="form" method="post" enctype="multipart/form-data">
+    <div>
+        <input name=" m.listChilds[0].File" type="file" />
+    </div>
+    <div>
+        @Html.TextAreaFor(m => m.listChilds[0].Desription)
+    </div>
+    <br />
+    <div>
+        <input name=" m.listChilds[1].File" type="file" />
+    </div>
+    <div>
+        @Html.TextAreaFor(m => m.listChilds[1].Desription)
+    </div>
+    <br />
+    <div>
+        <input name=" m.listChilds[2].File" type="file" />
+    </div>
+    <div>
+        @Html.TextAreaFor(m => m.listChilds[2].Desription)
+    </div>
+    <br />
+    <input type="submit" />
+</form>
