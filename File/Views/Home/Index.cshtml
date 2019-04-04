@@ -1,30 +1,20 @@
 ﻿@model ParentViewModel
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = Model.name;
 }
 
-<form class="form-action" id="form" method="post" enctype="multipart/form-data">
-    <div>
-        <input name=" m.listChilds[0].File" type="file" />
-    </div>
-    <div>
-        @Html.TextAreaFor(m => m.listChilds[0].Desription)
-    </div>
-    <br />
-    <div>
-        <input name=" m.listChilds[1].File" type="file" />
-    </div>
-    <div>
-        @Html.TextAreaFor(m => m.listChilds[1].Desription)
-    </div>
-    <br />
-    <div>
-        <input name=" m.listChilds[2].File" type="file" />
-    </div>
-    <div>
-        @Html.TextAreaFor(m => m.listChilds[2].Desription)
-    </div>
-    <br />
+<form class="form-action" id="form" asp-action="POST" enctype="multipart/form-data">
+    @{
+        foreach (var element in Model.listChilds)
+        {
+            <div>
+                <input asp-for="@element.File" type="file" name="@element.File" />
+            </div>
+            <div>
+                @Html.TextAreaFor(m => element.Description)
+            </div>
+        }
+    }
     <input type="submit" />
 </form>

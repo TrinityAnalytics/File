@@ -10,15 +10,23 @@ namespace File.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            ParentViewModel parentViewModel = new ParentViewModel();
+            parentViewModel.listChilds = new List<ChildViewModel>();
+            parentViewModel.listChilds.Add(new ChildViewModel { Description = "Photo 1" });
+            parentViewModel.listChilds.Add(new ChildViewModel { Description = "Photo 2" });
+            parentViewModel.listChilds.Add(new ChildViewModel { Description = "Photo 3" });
+            parentViewModel.name = "Salut Florian :D";
+            return View(parentViewModel);
         }
 
         [HttpPost]
-        public IActionResult Index(ParentViewModel parent)
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(ParentViewModel model) //Pour récupérer les données, il faut faire un bind sinon, tu récupères un modèle vide :)
         {
-            return Ok(parent.listChilds.Count);
+            return Ok(model.listChilds.Count);
         }
     }
 }
